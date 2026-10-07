@@ -5,7 +5,7 @@ export const docsContentRoute = '/llms.mdx/docs';
 
 // GitHub repository the docs link back to.
 export const gitConfig = {
-  user: 'syronlabs',
-  repo: 'stellar-mcp',
+  user: 'QuantumBinary',
+  repo: 'stellar-mcp-server',
   branch: 'main',
 };

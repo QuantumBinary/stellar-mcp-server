@@ -1,5 +1,9 @@
 # 🌟 Stellar MCP Server
 
+[![npm version](https://img.shields.io/npm/v/stellar-mcp.svg)](https://www.npmjs.com/package/stellar-mcp)
+[![CI Workflow](https://github.com/QuantumBinary/stellar-mcp-server/actions/workflows/main.yml/badge.svg)](https://github.com/QuantumBinary/stellar-mcp-server/actions/workflows/main.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A comprehensive Model Context Protocol (MCP) server that enables AI assistants to interact with the Stellar blockchain. This server provides tools for both Stellar Classic operations and Soroban smart contract development, allowing LLMs to manage accounts, process payments, deploy contracts, and perform complex blockchain operations.
 
 ## 📋 Table of Contents
