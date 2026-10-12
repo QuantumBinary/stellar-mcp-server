@@ -15,11 +15,14 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import dotenv from 'dotenv';
 
+import { validateStellarServerUrl } from './config/environment.config.js';
 import { Classic } from './features/classic/classic.js';
 import { Soroban } from './features/soroban/soroban.js';
 import { tools } from './tools/tools.js';
 
 dotenv.config();
+
+export { validateStellarServerUrl };
 
 const server = new Server(
   {
@@ -42,12 +45,7 @@ async function handleToolCall(
   args: any,
 ): Promise<CallToolResult> {
   try {
-    const stellarServer = process.env.STELLAR_SERVER_URL;
-    if (!stellarServer) {
-      throw new Error(
-        'STELLAR_SERVER_URL environment variable is not set. Please set it to your Stellar Horizon server URL (e.g., https://horizon-testnet.stellar.org)',
-      );
-    }
+    const stellarServer = validateStellarServerUrl();
 
     const stellarClassic = new Classic(stellarServer);
     const soroban = new Soroban(stellarServer);
@@ -213,6 +211,13 @@ server.setRequestHandler(
  * Main function to start the MCP server
  */
 async function main() {
+  try {
+    validateStellarServerUrl();
+  } catch (error: any) {
+    console.error(`Startup Configuration Error: ${error.message}`);
+    process.exit(1);
+  }
+
   const transport = new StdioServerTransport();
   await server.connect(transport);
   console.error('Stellar MCP server running');
